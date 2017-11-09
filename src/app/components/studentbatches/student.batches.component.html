@@ -1,0 +1,31 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">Batches</div>
+    </div>
+</md-toolbar>
+<main>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" *ngFor="let item of batchList">
+            <md-card class="half-margin" (click)="batchDetails(item)" *ngIf="item.batch.active">
+                <div fxLayoutAlign="space-between center">
+                    <div class="topic-title">{{item.batch.name}}</div>
+                </div>
+                <md-card-content class="padding-height">
+                    <app-imgload md-card-image [img]="item.batch.course.id"></app-imgload>
+                </md-card-content>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <md-icon color="accent" mdTooltip="Timings">access_time</md-icon>
+                    <span class="padding-side">{{item.batch.fromTime}} - {{item.batch.toTime}}</span>
+                    <md-icon color="accent" mdTooltip="Students">people</md-icon>
+                    <span class="padding-side">{{item.count.students}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" class="padding-height">
+                    <md-icon color="accent" mdTooltip="Course Name">copyright</md-icon>
+                    <span class="padding-side">{{item.batch.course.name}}</span>
+                    <md-icon color="primary" mdTooltip="Location">room</md-icon>
+                    <span class="padding-side">{{item.user.branch.name}}</span>
+                </div>
+            </md-card>
+        </div>
+    </div>
+</main>

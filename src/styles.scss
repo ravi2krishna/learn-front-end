@@ -1,0 +1,18 @@
+@import './styles/custom.scss';
+@import './styles/mdicon.css';
+@import './styles/md.scss';
+
+#loading {
+  margin: 0px 0px 0px 0px;
+  padding-bottom: 100px;
+  position: fixed;
+  height: 100%;
+  z-index: 9999;
+  width: 100%;
+  clear: none;
+  background-color: #f6f9fc;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

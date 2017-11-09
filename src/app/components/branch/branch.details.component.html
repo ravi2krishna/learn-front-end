@@ -1,0 +1,73 @@
+<aside>
+    <md-toolbar id="page-side-header">
+        <button md-mini-fab color="default" (click)="onClose()">
+        <md-icon color="accent">keyboard_arrow_left</md-icon>
+    </button>
+        <span class="title" style="padding-left: 2rem"> Branch Details </span>
+        <span flex>
+              
+        </span>
+        <button md-mini-fab color="default" (click)="open(null)" id="add">
+            <md-icon color="accent" >add</md-icon
+        ></button>
+
+    </md-toolbar>
+
+    <div id="page-content">
+
+        <form [formGroup]="myForm" novalidate autocomplete='off' class="padding-side">
+            <div fxLayout="column" fxLayoutAlign="end start">
+                <md-input-container>
+                    <input mdInput placeholder="Name" required [formControl]="myForm.controls.branch_name " [(ngModel)]="branch.name">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_name "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="Title" required [formControl]="myForm.controls.branch_title " [(ngModel)]="branch.title">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_title "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="Street" required [formControl]="myForm.controls.branch_address_street " [(ngModel)]="branch.address.street">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_address_street "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+
+                <md-input-container>
+                    <input mdInput placeholder="Lane" required [formControl]="myForm.controls.branch_address_lane " [(ngModel)]="branch.address.lane">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_address_lane "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="City" required [formControl]="myForm.controls.branch_address_city " [(ngModel)]="branch.address.city">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_address_city "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="State" required [formControl]="myForm.controls.branch_address_state " [(ngModel)]="branch.address.state">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_address_state"> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput placeholder="Zipcode" required [formControl]="myForm.controls.branch_address_zipcode " [(ngModel)]="branch.address.zipcode">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.branch_address_zipcode"> </form-messages>
+                    </md-hint>
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="default" [disabled]="!myForm.valid" (click)="save()" id="save">
+        <md-icon color="accent">save</md-icon>
+    </button>
+
+    </div>
+</aside>

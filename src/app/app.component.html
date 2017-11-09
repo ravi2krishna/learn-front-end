@@ -1,0 +1,43 @@
+<div id="loading" *ngIf="showLoader">
+    <md-spinner></md-spinner>
+</div>
+<div fxHide.gt-md style="position: fixed; left: 1rem; top: 1rem; z-index:1">
+    <md-icon *ngIf="showMenuIcon" (click)="sidenav.toggle()">menu</md-icon>
+</div>
+
+<md-sidenav-container class="sidenav-fab-container">
+    <md-sidenav #sidenav [opened]="isMenu" fxLayout="column" fxLayoutAlign="start start" (open-start)="menuToggle(true)" (close)="menuToggle(false)" style="width: 200px;background-color:#56677a">
+        <div class="scrolling-content side-bar-content">
+            <div class="home-content-container" fxLayoutAlign="center center" style="height: 100px">
+                <md-icon svgIcon="assets:logowhite" class="col-xs-12 center-xs" style="width:161px;height:48px;text-align:center" (click)="dashboards()"></md-icon>
+            </div>
+            <!--<md-divider></md-divider>-->
+            <div fxLayout="column" fxLayoutAlign="center center" (click)="myProfile()">
+                <div>
+                    <md-icon class="md-48" color="accent">account_circle</md-icon>
+                </div>
+                <div> <b style="color:#fff;text-transform: capitalize;cursor:pointer" class="padding-side" *ngIf="sessionUser">{{sessionUser.name}}</b>
+                </div>
+            </div>
+            <!--<md-divider></md-divider><-->
+            <md-nav-list id="nav">
+                <ng-template let-item ngFor [ngForOf]="menuList">
+                    <md-list-item (click)="navigate(item)" [ngClass]="{ 'activatedObject': activeMenuObject == item.name }">
+                        <md-icon md-list-icon class="padding-side">{{item.icon}}</md-icon>
+                        <a> {{item.name}}  </a>
+                    </md-list-item>
+                </ng-template>
+                <md-list-item (click)="logout()">
+                    <md-icon md-list-icon class="padding-side">exit_to_app</md-icon>
+                    <a> Signout  </a>
+                </md-list-item>
+            </md-nav-list>
+        </div>
+    </md-sidenav>
+    <div class="scrolling-content" style="width: 100%;z-index:1 ">
+        <router-outlet class="app-content"></router-outlet>
+    </div>
+</md-sidenav-container>
+
+<!-- 
+<router-outlet class="app-content"></router-outlet> -->

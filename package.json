@@ -1,0 +1,47 @@
+{
+  "name": "dledu",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod --aot"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "4.3.2",
+    "@angular/cdk": "2.0.0-beta.8",
+    "@angular/common": "4.3.2",
+    "@angular/compiler": "4.3.2",
+    "@angular/core": "4.3.2",
+    "@angular/flex-layout": "2.0.0-beta.8",
+    "@angular/forms": "4.3.2",
+    "@angular/http": "4.3.2",
+    "@angular/material": "2.0.0-beta.8",
+    "@angular/platform-browser": "4.3.2",
+    "@angular/platform-browser-dynamic": "4.3.2",
+    "@angular/router": "4.3.2",
+    "@ngui/map": "^0.18.4",
+    "@types/googlemaps": "^3.26.20",
+    "angular2-infinite-scroll": "^0.3.5",
+    "angularfire2": "4.0.0-rc.2",
+    "core-js": "2.4.1",
+    "firebase": "4.3.0",
+    "hammerjs": "2.0.8",
+    "promise-polyfill": "6.0.2",
+    "rxjs": "5.1.0",
+    "web-animations-js": "^2.3.1",
+    "zone.js": "0.8.4"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.2.6",
+    "@angular/compiler-cli": "4.3.2",
+    "@types/hammerjs": "2.0.34",
+    "@types/node": "6.0.60",
+    "codelyzer": "2.0.0",
+    "node-sass": "4.5.2",
+    "ts-node": "2.0.0",
+    "tslint": "4.5.0",
+    "typescript": "2.2.0"
+  }
+}

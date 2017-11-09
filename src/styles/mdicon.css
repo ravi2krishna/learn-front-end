@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("mdiconfont/MaterialIcons-Regular.eot");
+    /* For IE6-8 */
+    src: local("mdiconfont/Material Icons"), local("mdiconfont/MaterialIcons-Regular"), url("mdiconfont/MaterialIcons-Regular.woff2") format("woff2"), url("mdiconfont/MaterialIcons-Regular.woff") format("woff"), url("mdiconfont/MaterialIcons-Regular.ttf") format("truetype");
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+md-icon.material-icons,
+md-icon.material-icons.mat-icon {
+    width: 1em;
+    height: 1em;
+    cursor: pointer
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+}
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.material-icons.md-light {
+    color: white;
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}

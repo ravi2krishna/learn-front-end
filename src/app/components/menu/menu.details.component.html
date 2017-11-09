@@ -1,0 +1,26 @@
+<aside>
+    <md-toolbar id="page-side-header">
+        <button md-mini-fab color="default" (click)="onClose()">
+        <md-icon color="accent">keyboard_arrow_left</md-icon>
+    </button>
+        <span class="title" style="padding-left: 3rem"> Details </span>
+        <span flex></span>
+    </md-toolbar>
+    <div id="page-content" style="padding:0rem;">
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="padding" *ngFor="let item of menuItems">
+            <div fxFlex fxLayout="column">
+                <md-checkbox [(ngModel)]="item.checked">{{item.name}}</md-checkbox>
+                <div class="sub-title description-font" style="color:#9b9b9b">
+                    {{item.url}}
+                </div>
+            </div>
+            <md-divider></md-divider>
+        </div>
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right" md-mini-fab color="accent" (click)="save()" style="position:absolute;bottom:0px;" id="save">
+            <md-icon>send</md-icon>
+        </button>
+    </div>
+
+</aside>

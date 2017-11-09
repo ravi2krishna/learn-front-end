@@ -1,0 +1,42 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title"> {{topic.name}} Questions</div>
+    </div>
+</md-toolbar>
+<main>
+    <div class="padding-side">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding description-font" *ngIf="questionList">
+            <div>Name</div>
+            <div>Action</div>
+        </div>
+        <md-divider></md-divider>
+        <div *ngFor="let item of questionList">
+            <md-list fxLayout="column" *ngIf="item.active">
+                <md-list-item fxFlex="100" style="cursor: pointer">
+                    <h4 md-line class="topic-title">{{item.question}}</h4>
+                    <md-icon [mdMenuTriggerFor]="menu" color="accent">more_vert</md-icon>
+                </md-list-item>
+            </md-list>
+            <md-menu #menu="mdMenu" class="common-menu">
+                <button md-menu-item (click)="addQuestion(item)">
+                        <md-icon>edit</md-icon>
+                        <span>Edit</span>
+                </button>
+                <button md-menu-item (click)="delete(item)">                                   
+                        <md-icon>delete</md-icon>
+                        <span>Delete</span>
+                </button>
+            </md-menu>
+        </div>
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="addQuestion(null)"><md-icon >add</md-icon></button>
+    </div>
+</main>
+<!-- <md-sidenav #sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-topics-details (close)="onClose('reload')" [topic]="topic" [course]="course" style="width:100%"></app-topics-details>
+</md-sidenav>
+
+<md-sidenav #sidenav1 align="end" mode="over" [opened]="showSideLinks" (closeLinks)="onCloseLinks(null)">
+    <app-links-details [(linkData)]="topicLinkData" [topic]="topic" (closeLinks)="onCloseLinks('reload')" style="width:100%"></app-links-details>
+</md-sidenav> -->

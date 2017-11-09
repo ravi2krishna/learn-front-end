@@ -1,0 +1,104 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">Batches Details</div>
+    </div>
+</md-toolbar>
+<main>
+    <div class="padding-side">
+        <md-card *ngIf="batchesList" class="margin-side">
+            <div fxLayout="row wrap">
+                <div fxFlex.xs="100" fx.Flex.sm="50" fx.flex.md="33.333">
+                    <div class="vpair">
+                        <span>Batch Name: </span>
+                        <span>{{batchesList.name}}</span>
+                    </div>
+                    <div class="vpair">
+                        <span>FromDate: </span>
+                        <span>{{batchesList.fromDate | date}}</span>
+                    </div>
+                    <div class="vpair">
+                        <span>ToDate: </span>
+                        <span>{{batchesList.toDate | date}}</span>
+                    </div>
+                </div>
+                <div fxFlex.xs="100" fx.Flex.sm="50" fx.flex.md="33.333">
+                    <div class="vpair">
+                        <span>Course Name: </span>
+                        <span *ngIf="batchesList.course">{{batchesList.course.name}}</span>
+                    </div>
+                    <div class="vpair">
+                        <span>FromTime: </span>
+                        <span>{{batchesList.fromTime}}</span>
+                    </div>
+                    <div class="vpair">
+                        <span>ToTime: </span>
+                        <span>{{batchesList.toTime}}</span>
+                    </div>
+                </div>
+                <div fxFlex.xs="100" fx.Flex.sm="50" fx.flex.md="33.333">
+                    <div class="vpair">
+                        <span>BatchType: </span>
+                        <span *ngIf="batchesList.batchType">{{batchesList.batchType.name}}</span>
+                    </div>
+                    <div class="vpair">
+                        <span>Branch: </span>
+                        <span *ngIf="batchesList.branch">{{batchesList.branch.name}}</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </md-card>
+    </div>
+    <div class="padding">
+        <md-card style="padding-top: 0 !important">
+            <md-tab-group (selectChange)="selectTab($event)">
+                <md-tab label="Topics">
+                    <span *ngFor="let item of batchTopicList" class=" description-font" (click)="subTopics(item)" style="cursor:pointer">
+                        <div fxLayout="column"   *ngIf="!item.topic.parentTopic" style="border: 1px solid #ccc; padding: 1rem; margin: 1rem 0rem;">
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div style="padding: 1rem 0rem;" class="topic-title" >{{item.topic.name}}</div>
+                                <md-icon  class="md-28" color="accent" (click)="vedios()" mdTooltip="Play Now">play_circle_filled</md-icon>
+                                </div>
+                                <!-- <md-divider></md-divider> -->
+                                <div *ngIf="toggleItem.id == item.id">
+                                <span *ngFor="let subItem of batchTopicList" style=" width:100%">
+                                    <div fxLayout="row"  fxLayoutAlign="space-between center"  class="padding description-font" *ngIf="subItem.topic.parentTopic == item.topic.id" >
+                                        <div >{{subItem.topic.name}}</div>
+                                        <div>
+                                            <div class="sub-tittle">
+                                                     {{subItem.status.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+    </div>
+    </div>
+
+    </span>
+    </md-tab>
+    <md-tab label="Students">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font">
+            <div>Name</div>
+        </div>
+        <md-divider></md-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font" *ngFor="let item of studentList">
+            <div>{{item.user.name}}</div>
+        </div>
+    </md-tab>
+    <md-tab label="Trainer">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font">
+            <div>Name</div>
+        </div>
+        <md-divider></md-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font" *ngFor="let item of trainerList">
+            <div>{{item.user.name}}</div>
+        </div>
+    </md-tab>
+    </md-tab-group>
+    </md-card>
+    </div>
+</main>
+<md-sidenav align="end" mode="over" [opened]="showSide">
+    <app-batch-vedio></app-batch-vedio>
+</md-sidenav>

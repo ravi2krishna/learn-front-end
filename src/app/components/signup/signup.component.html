@@ -1,0 +1,70 @@
+<head id="page-header">
+    <md-icon class="padding" svgIcon="assets:logoblack" style="width:161px;height:48px" (click)="home()"></md-icon>
+</head>
+<main class="background-image">
+    <div fxLayout="row" fxLayoutAlign="center center" class="parent-container padding">
+        <md-card style="max-width:460px;" class="child-container">
+            <md-card-title fxLayoutAlign="center center">
+                <md-icon svgIcon="assets:logo" style="height:auto;width:20%"></md-icon>
+            </md-card-title>
+            <md-card-content>
+                <form [formGroup]="myForm" novalidate autocomplete='off'>
+                    <!--(ngSubmit)="onSubmit(myForm)"-->
+                    <div fxLayout="row wrap" fxLayoutAlign="center center">
+                        <!-- <md-input-container class="col-xs-12 col-md-6 ">
+                            <input mdInput placeholder="First Name " required [formControl]="myForm.controls.signup_firstName " [(ngModel)]="signup.firstName ">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.signup_firstName "> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                        <md-input-container class="col-xs-12 col-md-6 ">
+                            <input mdInput placeholder="Last Name " required [formControl]="myForm.controls.signup_lastName " [(ngModel)]="signup.lastName ">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.signup_lastName "> </form-messages>
+                            </md-hint>
+                        </md-input-container> -->
+                        <md-input-container fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100">
+                            <input mdInput placeholder="Email " required [formControl]="myForm.controls.auth_email" [(ngModel)]="auth.email ">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.auth_email "> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                        <!-- <md-input-container class="col-xs-12 col-md-6 ">
+                            <input mdInput placeholder="Mobile " required [formControl]="myForm.controls.signup_mobile " [(ngModel)]="signup.mobile ">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.signup_mobile "> </form-messages>
+                            </md-hint>
+                        </md-input-container> -->
+                        <md-input-container fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div>
+                                    <input mdInput type="{{showorhide}}" placeholder="Password" required [formControl]="myForm.controls.auth_password" [(ngModel)]="auth.password">
+                                </div>
+                                <div>
+                                    <md-icon *ngIf="isVisible == 'hide'" (click)="showPassword()" mdSuffix>visibility_off</md-icon>
+                                    <md-icon *ngIf="isVisible == 'show'" (click)="hidePassword()" mdSuffix>visibility</md-icon>
+                                </div>
+                            </div>
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.auth_password"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                </form>
+            </md-card-content>
+
+            <md-card-actions fxLayout="row wrap" fxLayoutAlign="center center">
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxLayoutAlign="center center">
+                    <button md-raised-button color="accent" [disabled]="!myForm.valid " style="width: 93.5% " (click)="onSubmit()">REGISTER</button>
+                </div>
+                <div class="padding-height">
+
+                    <a fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" style="width: 50%;text-decoration: none;color: #ffa000;margin-top: 6px;" (click)="signin()" fxLayoutAlign="start start" class="padding-side">Sign In</a>
+                </div>
+            </md-card-actions>
+
+
+
+        </md-card>
+    </div>
+</main>

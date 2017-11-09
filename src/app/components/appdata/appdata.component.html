@@ -1,0 +1,60 @@
+<md-toolbar id="page-header">
+    <span class="title"> Master Data </span>
+</md-toolbar>
+
+<main>
+    <div class="padding-side">
+        <md-chip-list>
+            <md-chip color="accent" *ngFor="let item of codesList; let i = index" [selected]="selectedIndex == i" (click)="dataLoad(item, i)" class="margin-side description-font">
+                {{item.name}}
+            </md-chip>
+        </md-chip-list>
+
+    </div>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" *ngFor="let item of appDataList">
+            <md-card class="half-margin" [style.border-left]="item.active ? '2px solid green' : '2px solid red'">
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="topic-title">
+                        {{item.code}}
+                    </div>
+                    <div>
+                        <md-icon [mdMenuTriggerFor]="menu" color="accent">more_vert</md-icon>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="hpair">
+                        <span>Name: </span>
+                        <span>{{item.name}}</span>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="hpair">
+                        <span>Key: </span>
+                        <span>{{item.key}}</span>
+                    </div>
+                </div>
+            </md-card>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item (click)="open(item)">
+                            <md-icon color="accent">edit</md-icon>
+                             <span>Edit</span>
+                         </button>
+                <button md-menu-item (click)="delete(item)">
+                            <md-icon color="warn" > delete</md-icon>
+                            <span>Delete</span>
+                        </button>
+            </md-menu>
+        </div>
+    </div>
+
+
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="open(null)"><md-icon >add</md-icon></button>
+    </div>
+
+</main>
+<md-sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-appdata-details [appData]="appData" (close)="onClose('reload')"></app-appdata-details>
+</md-sidenav>

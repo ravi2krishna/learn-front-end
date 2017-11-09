@@ -1,0 +1,72 @@
+<md-toolbar id="page-header">
+    <span class="title">User Data </span>
+</md-toolbar>
+
+<main>
+    <div class="padding-side">
+        <md-chip-list>
+            <md-chip color="accent" *ngFor="let item of accountRolesList; let i = index" [selected]="selectedIndex == i" (click)="dataLoad(item, i)" class="margin-side description-font">
+                {{item.name}}
+            </md-chip>
+        </md-chip-list>
+
+    </div>
+    <!-- <section class="padding">
+            <span style="position: absolute; padding:10px"><md-icon color="accent">filter_list</md-icon></span>
+            <input style="padding-left: 3rem;" type="search" [(ngModel)]="iFilter" placeholder="filter..." (click)="filter()">
+        </section> -->
+    <div fxLayout="row wrap">
+        <ng-template ngFor let-item [ngForOf]="accountData | filter : ['email','role.name', 'mobile']: iFilter" let-last=last color="primary">
+            <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20">
+                <md-card class="half-margin" [ngClass]="{active:!item.active}" [@clickedState]="'default'">
+                    <!--[style.border-left]="item.active ? '2px solid green' : '2px solid red'"-->
+                    <div fxLayout="row" fxLayoutAlign="space-between center" (click)="selectItem(item)">
+                        <span class="topic-title">{{item.name}}</span>
+                        <md-icon [mdMenuTriggerFor]="menu" color="accent">more_vert</md-icon>
+                    </div>
+
+                    <div fxLayout="column">
+                        <div class="vpair">
+                            <span>Email </span>
+                            <span>{{item.email}}</span>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div class="vpair" fxFlex="50">
+                            <span>Role </span>
+                            <span>{{item.role.name}}</span>
+                        </div>
+                        <div class="vpair" fxFlex="50" *ngIf="item.mobile">
+                            <span>Mobile </span>
+                            <span>{{item.mobile}}</span>
+                        </div>
+
+                    </div>
+
+
+                </md-card>
+
+            </div>
+
+            <md-menu #menu="mdMenu">
+                <button md-menu-item (click)="open()">
+                       <md-icon color="accent">edit</md-icon>
+                        <span>Edit</span>
+                    </button>
+                <button md-menu-item (click)="deleteAccount()">
+                       <md-icon color="warn"> delete</md-icon>
+                       <span>Delete</span>
+                   </button>
+            </md-menu>
+        </ng-template>
+
+
+    </div>
+</main>
+
+<div id="page-footer">
+    <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="add()"><md-icon >add</md-icon></button>
+</div>
+<md-sidenav #sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-account-details [user]="user" (close)="onClose('reload')" style="width:100%"></app-account-details>
+</md-sidenav>

@@ -1,0 +1,79 @@
+<md-toolbar id="page-side-header">
+    <md-icon (click)="onClose()" mdTooltip="Back!" class="md-24" color="accent">keyboard_arrow_left</md-icon>
+    <span class="title" style="padding-left: 3rem"> Details </span>
+    <span flex></span>
+</md-toolbar>
+
+<div id="page-content">
+
+    <form [formGroup]="myForm" novalidate autocomplete='off' class="padding-side">
+        <div fxLayout="column" fxLayoutAlign="end start">
+            <md-input-container>
+                <input mdInput placeholder="Name" required [formControl]="myForm.controls.user_name " [(ngModel)]="user.name">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.user_name "> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Email" required [formControl]="myForm.controls.user_email " [(ngModel)]="user.email">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.user_email "> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Mobile" required [formControl]="myForm.controls.user_mobile " [(ngModel)]="user.mobile">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.user_mobile "> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput type="password" placeholder="Password" required [formControl]="myForm.controls.user_password " [(ngModel)]="user.password">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.user_password "> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <!--
+                <md-input-container>
+                    <input mdInput placeholder="City"  formControlName="myForm.controls.account_profile_address_city " [(ngModel)]="account.profile.address.city">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.account_profile_address_city "> </form-messages>
+                    </md-hint>
+                </md-input-container>-->
+            <!--<md-input-container >
+                    <input mdInput placeholder="Zipcode" required  formControlName="myForm.controls.account_profile_zipcode " [(ngModel)]="accountData.profile.zipcode">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.account_profile_zipcode "> </form-messages>
+                    </md-hint>
+                </md-input-container>-->
+            <div class="md-select ">
+                <md-select placeholder="Role" [(ngModel)]="user.role.id" style="width: 100%" [ngModelOptions]="{standalone: true}">
+                    <md-option *ngFor="let item of roleList" [value]="item.id">
+                        {{ item.name }}
+                    </md-option>
+                </md-select>
+            </div>
+            <div class="md-select ">
+                <md-select placeholder="Branch" [(ngModel)]="user.branch.id" style="width: 100%" [ngModelOptions]="{standalone: true}">
+                    <md-option *ngFor="let item of branches" [value]="item.id">
+                        {{ item.name }}
+                    </md-option>
+                </md-select>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div>
+                <span>Status</span>
+            </div>
+            <div>
+                <md-slide-toggle [(ngModel)]="user.active" [ngModelOptions]="{standalone: true}"></md-slide-toggle>
+            </div>
+        </div>
+    </form>
+
+</div>
+<div id="page-footer">
+    <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="save()" [disabled]="!myForm.valid" id="save">
+        <md-icon>save</md-icon>
+    </button>
+
+</div>

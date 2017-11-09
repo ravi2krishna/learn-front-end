@@ -1,0 +1,59 @@
+<md-toolbar id="page-header">
+    <span class="title">Branch</span>
+</md-toolbar>
+
+
+<main>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" *ngFor="let item of branchData">
+            <md-card class="half-margin">
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="topic-title">{{item.name}}</span>
+
+                    <md-icon [mdMenuTriggerFor]="menu" color="accent" (click)="selectItem(item)">more_vert</md-icon>
+                </div>
+                <div class="padding-height">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <md-icon color="primary">location_on</md-icon>
+                        <span>{{item.title}}</span>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="hpair">
+                        <span>Country </span>
+                        <span>{{item.address.country}}</span>
+                    </div>
+                </div>
+
+                <!--<div fxLayout="column">
+                    <div class="vpair description-font ">
+                        <span> {{item.address.street}}</span>
+                        <span> {{item.address.city}},{{item.address.state}} </span>
+                        <span> {{item.address.country}}, {{item.address.zipcode}}</span>
+                    </div>
+                </div>-->
+            </md-card>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item (click)="open(item)">
+                           <md-icon color="accent">edit</md-icon>
+                            <span>Edit</span>
+                        </button>
+                <button md-menu-item>
+                           <md-icon color="warn" (click)="delete()"> delete</md-icon>
+                           <span>Delete</span>
+                       </button>
+            </md-menu>
+        </div>
+    </div>
+</main>
+
+<div id="page-footer">
+    <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="open(null)"><md-icon >add</md-icon></button>
+</div>
+
+
+
+<md-sidenav #sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-branch-details [branch]="branch" (close)="onClose('reload')" style="width:100%"></app-branch-details>
+</md-sidenav>

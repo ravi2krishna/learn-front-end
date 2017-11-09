@@ -1,0 +1,19 @@
+<md-toolbar id="page-header">
+    <span class="title"> Selecting Prefer branch </span>
+</md-toolbar>
+
+<main>
+    <div class="padding-side">
+        <md-chip-list>
+            <md-chip color="accent" *ngFor="let item of branches; let i = index" [selected]="item.id == branch.id" (click)="selected(item)"
+                class="margin-side description-font">
+                {{item.name}}
+            </md-chip>
+        </md-chip-list>
+
+    </div>
+    <ngui-map zoom="15" center="{{lat}}, {{lng}}" (mapReady$)="onMapReady($event)" (mapClick)="onMapClick($event)">
+        <marker *ngFor="let pos of positions" [position]="[lat, lng]" (initialized$)="onMarkerInit($event)"></marker>
+    </ngui-map>
+</main>
+

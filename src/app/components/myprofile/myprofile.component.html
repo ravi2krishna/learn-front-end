@@ -1,0 +1,63 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">My Profile</div>
+    </div>
+</md-toolbar>
+<main>
+    <div class="padding-side">
+        <md-card>
+            <div class="padding topic-title">Profile Details</div>
+            <form [formGroup]="myForm" novalidate autocomplete='off'>
+                <div fxLayout="row wrap">
+                    <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="padding-side">
+                        <md-input-container>
+                            <input mdInput placeholder="Name" required [formControl]="myForm.controls.user_name " [(ngModel)]="user.name">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.user_name "> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="padding-side">
+                        <md-input-container>
+                            <input mdInput placeholder="Mobile" required [formControl]="myForm.controls.user_mobile " [(ngModel)]="user.mobile">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.user_mobile "> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="padding-side">
+                        <md-input-container>
+                            <input mdInput placeholder="E-mail" required [formControl]="myForm.controls.user_email " [(ngModel)]="user.email">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.user_email "> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="padding-side">
+                        <md-input-container>
+
+                            <input mdInput type="{{showorhide}}" placeholder="Password" required [formControl]="myForm.controls.user_password" [(ngModel)]="user.password">
+                            <md-icon *ngIf="isVisible == 'hide'" (click)="showPassword()" mdSuffix>visibility_off</md-icon>
+                            <md-icon *ngIf="isVisible == 'show'" (click)="hidePassword()" mdSuffix>visibility</md-icon>
+
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.user_password"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                    <!--<div fxFlex.xs="100" fxFlex.sm="50" class="padding-side">
+                        <md-input-container>
+                            <input mdInput placeholder="Address" required [formControl]="myForm.controls.account_password " [(ngModel)]="account.password">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.account_password"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>-->
+                </div>
+            </form>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-raised-button color="accent" (click)="save()" [disabled]="!myForm.valid">Save</button>
+            </div>
+        </md-card>
+    </div>
+</main>

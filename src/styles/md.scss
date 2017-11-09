@@ -1,0 +1,191 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$my-app-primary: mat-palette($mat-green);
+$my-app-accent: mat-palette($mat-amber, 700, 900, A100);
+$my-app-warn: mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+md-toolbar {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    margin-bottom: 1rem;
+}
+
+md-chip {
+    max-width: 200px;
+    margin-bottom: 0.5rem !important;
+}
+
+md-chip:focus {
+    outline: none;
+}
+
+.mat-input-container {
+    width: 100%;
+    margin: 0rem 0rem !important;
+}
+
+.mat-select {
+    width: 100%;
+}
+
+md-card-content {
+    cursor: pointer;
+}
+
+.md-select {
+    width: 100%;
+    margin: 11px 0 !important;
+}
+
+.mat-select-trigger {
+    font: inherit;
+}
+
+md-chip {
+    padding: 12px 24px!important;
+    cursor: pointer;
+}
+
+md-divider {
+    display: block;
+    border-top-style: solid;
+    border-top-width: 1px;
+    margin: 0;
+    margin-bottom: 8px;
+    margin-top: -8px;
+}
+
+.md-fab-position-bottom-right {
+    bottom: 1rem;
+    right: 1rem;
+    position: absolute;
+}
+
+#page-bottom {
+    bottom: 0 rem;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.bg-flat {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #00796b;
+}
+
+.mat-toolbar {
+    background-color: white;
+    cursor: pointer;
+}
+
+// .mat-sidenav-container {
+//     display: flex !important;
+//     flex: 1 1;
+//     height: 100%;
+//     background-color: #f5f9fc !important;
+// }
+// .app-content {
+//     overflow-y: auto;
+// }
+// .mat-sidenav-content {
+//     top: 0 !important;
+//     bottom: 0 !important;
+//     width: 100% !important;
+//     position: absolute !important;
+//     overflow: hidden !important;
+// }
+// .mat-sidenav {
+//     min-width: 19rem !important;
+// }
+.sidenav-fab-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #f5f9fc !important;
+}
+
+.sidenav-fab-container md-sidenav {
+    width: 300px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    display: inline !important;
+}
+
+.sticky-side-bar {
+    background-color: #2B323A;
+}
+
+.side-bar-content {
+    width: 100%;
+}
+
+.mat-list-item {
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+#nav {
+    .mat-list-item-content:hover {
+        color: #fff;
+        background-color: #778594 !important;
+    }
+    .mat-list-item {
+        color: #ffffff !important;
+        background-color: #56677a !important;
+        border-bottom: 0px solid #ccc;
+    }
+}
+
+.sidenav-fab-container .mat-sidenav-content,
+.sidenav-fab-container md-sidenav {
+    display: flex;
+    // overflow: visible;
+    overflow: hidden;
+}
+
+.scrolling-content {
+    overflow: auto;
+}
+
+.mat-nav-list a:focus {
+    outline: none
+}
+
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-button,
+.mat-fab,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-raised-button,
+a {
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.mat-card {
+    padding: 1rem !important;
+}
+
+.mat-card-actions {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.md-box {
+    display: flex;
+    align-content: center;
+    margin-top: 1rem;
+}
+
+.mat-select-placeholder.mat-floating-placeholder {
+    top: -16px !important;
+}

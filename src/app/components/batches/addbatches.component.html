@@ -1,0 +1,151 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">Batches</div>
+    </div>
+</md-toolbar>
+<main>
+    <div class="padding-side">
+        <md-card>
+            <form [formGroup]="myForm" novalidate autocomplete='off'>
+                <div fxLayout="row wrap">
+                    <div fxFlex="100" class="padding-side">
+                        <md-input-container>
+                            <input mdInput placeholder="Batch Name" required [formControl]="myForm.controls.batch_name" [(ngModel)]="batch.name">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.batch_name"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" class="padding-side">
+                        <md-input-container>
+                            <input mdInput [mdDatepicker]="fromDate" placeholder="Start Date" [(ngModel)]="batch.fromDate" [ngModelOptions]="{standalone: true}">
+                            <button mdSuffix [mdDatepickerToggle]="fromDate"></button>
+                        </md-input-container>
+                        <md-datepicker #fromDate></md-datepicker>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" class="padding-side">
+                        <md-input-container>
+                            <input mdInput [mdDatepicker]="toDate" placeholder="End Date" [(ngModel)]="batch.toDate" [ngModelOptions]="{standalone: true}">
+                            <button mdSuffix [mdDatepickerToggle]="toDate"></button>
+                        </md-input-container>
+                        <md-datepicker #toDate></md-datepicker>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" class="padding-side">
+                        <div class="md-select">
+                            <md-select placeholder="Start Time" [(ngModel)]="batch.fromTime" [ngModelOptions]="{standalone:true}">
+                                <md-option *ngFor="let item of timingList" [value]="item.name">
+                                    {{item.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" class="padding-side">
+                        <div class="md-select">
+                            <md-select placeholder="End Time" [(ngModel)]="batch.toTime" [ngModelOptions]="{standalone:true}">
+                                <md-option *ngFor="let item of timingList" [value]="item.name">
+                                    {{item.name}}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" class="padding-side">
+                        <div class="md-select">
+                            <md-select placeholder="Course Name" [(ngModel)]="batch.course.id" [ngModelOptions]="{standalone:true}" [disabled]="batch && batch.id">
+                                <md-option *ngFor="let item of courseList" [value]="item.id">
+                                    {{ item.name }}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" class="padding-side">
+                        <div class="md-select">
+                            <md-select placeholder="Batch Type" [(ngModel)]="batch.batchType.id" [ngModelOptions]="{standalone:true}">
+                                <md-option *ngFor="let item of batchTypeList" [value]="item.id">
+                                    {{ item.name }}
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-raised-button color="accent" (click)="save()" [disabled]="!myForm.valid" id="save">Save</button>
+            </div>
+        </md-card>
+    </div>
+    <div class="padding" *ngIf="batch && batch.id">
+        <md-card style="padding-top: 0 !important">
+            <md-tab-group (selectChange)="selectTab($event)">
+                <md-tab label="Topics">
+                    <!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height heading-font">
+                        <div>Name</div>
+                        <div>Status</div>
+                    </div> -->
+                    <!-- <md-divider></md-divider> -->
+                    <span *ngFor="let item of batchTopicList" class=" description-font"> 
+                        <div fxLayout="column"   *ngIf="!item.topic.parentTopic" style="border: 1px solid #ccc; padding: 1rem; margin: 1rem 0rem;">
+                                <div fxLayout="row"  fxLayoutAlign="space-between center" (click)="subTopics(item)" style="cursor:pointer">
+                                    <div style="padding: 1rem 0rem;" class="topic-title">{{item.topic.name}}</div>
+                                    <md-icon color="accent" (click)="openLinks(item)" class="attach-icon">link</md-icon>
+                                </div>
+                                <!-- <md-divider></md-divider> -->
+                                <div *ngIf="toggleItem.id == item.id" >
+                                <span *ngFor="let subItem of batchTopicList" style=" width:100%"  >
+                                    <div fxLayout="row"  fxLayoutAlign="space-between center" class="padding description-font" *ngIf="subItem.topic.parentTopic == item.topic.id" >
+                                        <div>{{subItem.topic.name}}</div>
+                                        <div>
+                                            <md-select placeholder="Status" [(ngModel)]="subItem.status.id" name="status" (ngModelChange)="updateStatus(subItem)">
+                                                <md-option *ngFor="let status of topicStatusList" [value]="status.id">
+                                                    {{status.name}}
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                </span>
+    </div>
+    </div>
+
+    </span>
+    </md-tab>
+    <md-tab label="Students">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font">
+            <div>Name</div>
+            <div>Action</div>
+        </div>
+        <md-divider></md-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font" *ngFor="let item of studentList">
+            <div>{{item.user.name}}</div>
+            <md-icon color="warn" (click)="deleteMember(item.id)">delete</md-icon>
+        </div>
+    </md-tab>
+    <md-tab label="Trainer">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font">
+            <div>Name</div>
+            <div>Action</div>
+        </div>
+        <md-divider></md-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding-height description-font" *ngFor="let item of trainerList">
+            <div>{{item.user.name}}</div>
+            <md-icon color="warn" (click)="deleteMember(item.id)">delete</md-icon>
+        </div>
+    </md-tab>
+    </md-tab-group>
+    </md-card>
+    </div>
+
+    <div id="page-footer" *ngIf="selectedTab != 0">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="open()" style="z-index: 9" id="add">
+            <md-icon >add</md-icon>
+        </button>
+    </div>
+</main>
+<md-sidenav align="end" mode="over" [opened]="trainerFilterShow">
+    <app-trainer-aside (close)="closeTrainer($event)" style="width:100%"></app-trainer-aside>
+</md-sidenav>
+
+<md-sidenav align="end" mode="over" [opened]="studentFilterShow">
+    <app-student-aside (close)="closeStudent($event)" style="width:100%"></app-student-aside>
+</md-sidenav>
+<md-sidenav align="end" mode="over" [opened]="topicLinkShow">
+    <app-topiclinks-details [(linkData)]="topicLinkData" [topic]="topic" (closeLinks)="onCloseLinks('reload')" style="width:100%"></app-topiclinks-details>
+</md-sidenav>

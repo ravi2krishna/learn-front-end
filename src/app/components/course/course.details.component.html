@@ -1,0 +1,52 @@
+<aside>
+    <md-toolbar id="page-side-header">
+
+        <md-icon color="accent" (click)="onClose()">keyboard_arrow_left</md-icon>
+        <span class="title" style="padding-left: 3rem"> Details </span>
+        <span flex></span>
+    </md-toolbar>
+
+    <div id="page-content">
+        <div class="padding-side">
+            <form [formGroup]="myForm" novalidate autocomplete='off'>
+
+                <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                    <md-input-container fxFlex="100">
+                        <input mdInput placeholder="Name" required [formControl]="myForm.controls.course_name " [(ngModel)]="course.name">
+                        <md-hint>
+                            <form-messages [control]="myForm.controls.course_name "> </form-messages>
+                        </md-hint>
+                    </md-input-container>
+                    <md-input-container fxFlex="100">
+                        <input mdInput placeholder="Notes" required [formControl]="myForm.controls.course_des " [(ngModel)]="course.des">
+                        <md-hint>
+                            <form-messages [control]="myForm.controls.course_des "> </form-messages>
+                        </md-hint>
+                    </md-input-container>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between start">
+                    <div>
+                        <span>Status</span>
+                    </div>
+                    <div class="padding-side">
+                        <md-slide-toggle [(ngModel)]="course.active" [ngModelOptions]="{standalone: true}"> </md-slide-toggle>
+                    </div>
+                </div>
+
+
+                <div fxLayout="row" fxLayoutAlign="center center" style="padding-right: 1rem;">
+                    <app-imgupload [(ngModel)]="course.img.src" ngDefaultControl [ngModelOptions]="{standalone: true}"></app-imgupload>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" [disabled]="!myForm.valid" md-mini-fab color="accent" (click)="save()" id="save">
+        <md-icon>save</md-icon>
+    </button>
+
+    </div>
+
+
+</aside>

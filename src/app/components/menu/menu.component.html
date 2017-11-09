@@ -1,0 +1,34 @@
+<md-toolbar id="page-header">
+    <span class="title"> Menu Data </span>
+</md-toolbar>
+
+<main>
+    <div class="padding-side">
+        <md-chip-list>
+            <md-chip color="accent" *ngFor="let item of rolesList; let i = index" [selected]="selectedIndex == i" (click)="dataLoad(item, i)" class="margin-side description-font">
+                {{item.name}}
+            </md-chip>
+        </md-chip-list>
+    </div>
+    <div class="row wrap">
+        <div fxFlex="100">
+
+            <md-list class="padding-side">
+                <md-list-item *ngFor="let item of menuData">
+                    <md-icon md-list-icon>{{item.link.icon}}</md-icon>
+                    <h4 md-line>{{item.link.name}}</h4>
+                    <p md-line class="sub-title">{{item.link.url}} </p>
+                    <md-icon color="warn" (click)="delete(item)">delete</md-icon>
+                </md-list-item>
+            </md-list>
+
+        </div>
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="open(null)"><md-icon >add</md-icon></button>
+    </div>
+
+</main>
+<md-sidenav #sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-menu-details [menuData]="menuData" (close)="onClose($event)" style="width:100%"></app-menu-details>
+</md-sidenav>

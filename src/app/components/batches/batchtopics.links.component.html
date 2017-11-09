@@ -1,0 +1,56 @@
+<md-toolbar id="page-side-header">
+    <div fxLayout="row">
+        <div>
+            <md-icon (click)="onCloseLinks()" mdTooltip="Back!" class="md-24" color="accent">keyboard_arrow_left</md-icon>
+        </div>
+        <div class="title" style="padding-left:4rem">
+            Topic Links
+        </div>
+        <div style="padding-left:2rem">
+            <md-icon (click)="editLinks(null)" mdTooltip="Add Topic" class="md-24" color="accent">add</md-icon>
+        </div>
+    </div>
+</md-toolbar>
+<div id="page-content">
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="padding" *ngFor="let item of linkData">
+        <div fxFlex fxLayout="column">
+            <div class="title">
+                {{item.name}}
+            </div>
+            <div class="sub-title" style="color:#9b9b9b">
+                {{item.url}}
+            </div>
+        </div>
+        <div fxFlex="20" fxLayout="row">
+            <md-icon (click)="editLinks(item)" color="accent" fxFlex="40">edit</md-icon>
+            <md-icon color="warn" (click)="delete(item)"> delete</md-icon>
+        </div>
+        <md-divider></md-divider>
+    </div>
+</div>
+<div id="page-footer" *ngIf="isShow">
+    <form [formGroup]="myForm" autocomplete='off' class="padding-side" style="position:absolute; bottom:0rem;">
+        <div class="row ">
+            <md-input-container class="col-xs-12">
+                <input mdInput placeholder="Name" required [formControl]="myForm.controls.topiclink_name" [(ngModel)]="batchtopicLink.name">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.topiclink_name"> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <md-input-container class="col-xs-12">
+                <input mdInput placeholder="Link" required [formControl]="myForm.controls.topiclink_url" [(ngModel)]="batchtopicLink.url">
+                <md-hint>
+                    <form-messages [control]="myForm.controls.topiclink_url"> </form-messages>
+                </md-hint>
+            </md-input-container>
+            <md-select placeholder="Type" [(ngModel)]="batchtopicLink.linkType.id" [ngModelOptions]="{standalone:true}">
+                <md-option *ngFor="let item of linkTypeList" [value]="item.id">
+                    {{ item.code }}
+                </md-option>
+            </md-select>
+            <button md-raised-button color="accent" class="margin" (click)="save()" style="width: 90%;border-radius: 20px;" id="save">
+                   Submit
+                </button>
+        </div>
+    </form>
+</div>

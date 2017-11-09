@@ -1,0 +1,48 @@
+<aside>
+    <md-toolbar id="page-side-header">
+        <md-icon (click)="onClose()" mdTooltip="Back!" class="md-24" color="accent">keyboard_arrow_left</md-icon>
+        <span class="title" style="padding-left: 3rem"> Details </span>
+        <span flex></span>
+    </md-toolbar>
+
+    <div id="page-content">
+
+        <form [formGroup]="myForm" novalidate autocomplete='off' class="padding-side">
+            <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                <md-input-container fxFlex="100">
+                    <input mdInput placeholder="Code" required [formControl]="myForm.controls.apex_appData_code " [(ngModel)]="appData.code" readonly>
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.apex_appData_code "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container fxFlex="100">
+                    <input mdInput placeholder="Key" required [formControl]="myForm.controls.apex_appData_key " [(ngModel)]="appData.key">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.apex_appData_key "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+                <md-input-container fxFlex="100">
+                    <input mdInput placeholder="Name" required [formControl]="myForm.controls.apex_appData_name " [(ngModel)]="appData.name">
+                    <md-hint>
+                        <form-messages [control]="myForm.controls.apex_appData_name "> </form-messages>
+                    </md-hint>
+                </md-input-container>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+                <div>
+                    <span>Status</span>
+                </div>
+                <div>
+                    <md-slide-toggle [(ngModel)]="appData.status" [ngModelOptions]="{standalone: true}"></md-slide-toggle>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="save()" id="save">
+        <md-icon >save</md-icon>
+    </button>
+    </div>
+</aside>

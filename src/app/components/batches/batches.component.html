@@ -1,0 +1,61 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">Batches</div>
+    </div>
+
+</md-toolbar>
+
+<main>
+
+
+    <div fxLayout="row wrap">
+        <!-- <section>
+        <span style="position: absolute; padding:10px"><md-icon color="accent">filter_list</md-icon></span>
+        <input style="padding-left: 3rem;" type="search" [(ngModel)]="iFilter" placeholder="filter...">
+    </section> -->
+        <ng-template ngFor let-item [ngForOf]="batchList | filter : ['name','course.name']: iFilter" let-last=last color="primary">
+            <div fxFlex="100" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3333" fxFlex.lg="25" fxFlex.xl="20" style="padding-top:2rem">
+                <md-card class="half-margin" [@clickedState]="'default'">
+                    <div fxLayoutAlign="space-between center">
+                        <div class="topic-title" style="cursor:pointer" (click)="batchDetails(item)">{{item.name}}</div>
+                        <md-icon [mdMenuTriggerFor]="menu" color="accent">more_vert</md-icon>
+                    </div>
+                    <md-card-content (click)="batchDetails(item)">
+                        <app-imgload md-card-image [img]="item.course.id"></app-imgload>
+                        <!--<div style="margin-top:-22px;background:black;opacity:0.6;color:#fff">{{item.course.name}}</div>-->
+                    </md-card-content>
+                    <div fxLayout="row" fxLayoutAlign="start center" class="padding-height" (click)="batchDetails(item)">
+                        <md-icon color="accent" mdTooltip="Timings">access_time</md-icon>
+                        <span class="padding-side">{{item.fromTime}} - {{item.toTime}}</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" (click)="batchDetails(item)">
+                        <md-icon color="accent" mdTooltip="Students">people</md-icon>
+                        <span class="padding-side">{{item.count.students}}</span>
+                        <md-icon color="accent" mdTooltip="Trainers">person</md-icon>
+                        <span class="padding-side">{{item.count.trainers}}</span>
+                        <md-icon color="primary" mdTooltip="Location">room</md-icon>
+                        <span class="padding-side">{{item.branch.name}}</span>
+                    </div>
+                    <md-menu #menu="mdMenu">
+                        <button md-menu-item (click)="addBatches(item)">
+                          <md-icon color="accent">edit</md-icon>
+                        <span>Edit</span>
+                      
+                    </button>
+                        <button md-menu-item (click)="delete(item)">
+                         <md-icon color="warn">delete</md-icon>
+                     <span>Delete</span>
+                   
+                 </button>
+                    </md-menu>
+                </md-card>
+            </div>
+        </ng-template>
+    </div>
+    <div id="page-footer ">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="addBatches(null)" id="add"><md-icon>add</md-icon></button>
+    </div>
+</main>
+<!-- <aside *ngIf="isAddBatch">
+    <app-addbatches></app-addbatches>
+</main> -->

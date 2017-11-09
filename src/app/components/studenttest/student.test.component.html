@@ -1,0 +1,62 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">Assignment</div>
+    </div>
+</md-toolbar>
+<main>
+    <div fxLayout="row wrap">
+        <div fxFlex="75" class="padding-side">
+            <!--<div *ngFor="let item of questionsList ;let i = index">
+                <div *ngIf="i<1"> -->
+            <md-toolbar class="topic-title">{{taskMcq.task.topic.name}}</md-toolbar>
+            <md-card fxLayout="row" fxLayoutAlign="start center">
+                <div>{{selectedIndex +1}}.</div>
+                <div class="padding-side">{{taskMcq.mcq.question}}</div>
+            </md-card>
+            <md-card class="padding">
+                <div fxLayout="row" class="padding box-option">
+                    <md-checkbox (change)="onChange($event, 'a')" [checked]="'a' == taskMcq.yourAns"></md-checkbox>
+                    <div class="padding-side">{{taskMcq.mcq.optionA}}</div>
+                </div>
+                <div fxLayout="row" class="padding box-option">
+                    <md-checkbox (change)="onChange($event, 'b')" [checked]="'b' == taskMcq.yourAns"></md-checkbox>
+                    <div class="padding-side">{{taskMcq.mcq.optionB}}</div>
+                </div>
+                <div fxLayout="row" class="padding box-option">
+                    <md-checkbox (change)="onChange($event, 'c')" [checked]="'c' == taskMcq.yourAns"></md-checkbox>
+                    <div class="padding-side">{{taskMcq.mcq.optionC}}</div>
+                </div>
+                <div fxLayout="row" class="padding box-option">
+                    <md-checkbox (change)="onChange($event, 'd' )" [checked]="'d' == taskMcq.yourAns"></md-checkbox>
+                    <div class="padding-side">{{taskMcq.mcq.optionD}}</div>
+                </div>
+            </md-card>
+            <div fxLayout="row" fxLayoutAlign="space-between end" class="padding">
+                <div></div>
+                <div class="padding-height" *ngIf="finalIndex !== selectedIndex+1">
+                    <button md-raised-button color="accent" (click)="saveNext()">Save & Next</button>
+                </div>
+                <div class="padding-height" *ngIf="finalIndex === selectedIndex+1">
+                    <button md-raised-button color="accent" (click)="submitTest()">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="25">
+            <div fxHide.gt-md style="position: fixed; right: 1rem; top: 1rem; z-index:1">
+                <md-icon *ngIf="showMenuIcon" (click)="sidenav.toggle()">menu</md-icon>
+            </div>
+            <md-sidenav-container class="sidenav-fab-container">
+                <md-sidenav #sidenav mode="side" align="end" [opened]="true" fxLayout="column" fxLayoutAlign="end end" style="width: 300px;background-color:#ffffff">
+                    <div class="padding " fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div *ngFor="let item of questionsList ;let i = index ">
+                            <div fxFlex="25" style="padding:3px;">
+                                <button md-mini-fab color="primary" (click)="eachQuestionSelect(item, i) ">{{i + 1}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </md-sidenav>
+            </md-sidenav-container>
+        </div>
+
+    </div>
+</main>

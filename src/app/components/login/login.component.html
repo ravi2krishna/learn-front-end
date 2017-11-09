@@ -1,0 +1,65 @@
+<head id="page-header">
+    <md-icon class="padding" svgIcon="assets:logoblack" style="width:161px;height:48px" (click)="home()"></md-icon>
+</head>
+<main id="page-content" style="background: url(../../../../assets/home-banner.png) no-repeat center fixed;background-size: 100% 100%;
+    background-attachment: fixed;">
+    <div fxLayout="row" fxLayoutAlign="center center" class="parent-container padding">
+        <!--class="row center-xs parent-container padding"-->
+        <md-card style="max-width:460px;" class="child-container">
+            <md-card-title fxLayoutAlign="center center">
+                <md-icon svgIcon="assets:logo" style="height:auto;width:30%"></md-icon>
+            </md-card-title>
+            <md-card-content>
+                <form [formGroup]="myForm" novalidate autocomplete='off'>
+                    <div fxLayout="row wrap" fxLayoutAlign="center center">
+                        <md-input-container fxFlex="100">
+                            <input mdInput placeholder="User Name or Email" required [formControl]="myForm.controls.auth_email" [(ngModel)]="auth.email">
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.auth_email"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                        <md-input-container fxFlex="100">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div>
+                                    <input mdInput type="{{showorhide}}" placeholder="Password" required [formControl]="myForm.controls.auth_password" [(ngModel)]="auth.password">
+                                </div>
+                                <div>
+                                    <md-icon *ngIf="isVisible == 'hide'" (click)="showPassword()" mdSuffix>visibility_off</md-icon>
+                                    <md-icon *ngIf="isVisible == 'show'" (click)="hidePassword()" mdSuffix>visibility</md-icon>
+                                </div>
+                            </div>
+                            <md-hint>
+                                <form-messages [control]="myForm.controls.auth_password"> </form-messages>
+                            </md-hint>
+                        </md-input-container>
+                    </div>
+                </form>
+            </md-card-content>
+            <md-card-actions fxLayout="row wrap" fxLayoutAlign="center center">
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" fxLayoutAlign="center center">
+                    <button md-raised-button color="accent" [disabled]="!myForm.valid" style="width:93.5%" (click)="signInEmail()">LOGIN</button>
+                </div>
+                <a class="padding-height" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" style="text-decoration: none;color: #ffa000;margin-top: 6px;" (click)="signup()" fxLayoutAlign="end end" class="padding-side">Sign Up</a>
+                <div fxLayoutAlign="center center" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.xl="100" fxFlex.lg="100" style="width:50%;color: #ccc">
+                    or
+                </div>
+            </md-card-actions>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+
+
+
+                <div class="padding-side">
+                    <md-icon svgIcon="assets:fb" alt="facebook" id="fb" (click)="loginFb()"></md-icon>
+                </div>
+                <div class="padding-side">
+                    <md-icon svgIcon="assets:logo3" alt="google" id="google" (click)="loginGoogle()"></md-icon>
+                </div>
+                <!-- <div class="col-xs-3">
+                    <md-icon svgIcon="assets:logo2" alt="linkedin"></md-icon>
+                </div> -->
+            </div>
+
+        </md-card>
+    </div>
+</main>

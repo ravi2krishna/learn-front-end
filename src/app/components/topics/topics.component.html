@@ -1,0 +1,73 @@
+<md-toolbar id="page-header">
+    <div fxFlexLayout="column">
+        <div class="title">{{course.name}}</div>
+    </div>
+</md-toolbar>
+<main>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around start" class="padding-side">
+        <div fxFlex.xs="100" fxFlex="10">
+            <app-imgload md-card-image [img]="course.id" style="height:70px"></app-imgload>
+        </div>
+        <div fxFlex.xs="100" fxFlex="80">
+            <md-card>
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <h4 class="topic-title">{{course.name}}</h4>
+                    <p class="sub-tittle">{{course.des}}</p>
+                </div>
+            </md-card>
+        </div>
+    </div>
+
+    <div class="padding-side">
+        <div *ngFor="let item of topicList">
+            <md-list fxLayout="column " *ngIf="item.parentTopic == null">
+                <md-list-item fxFlex="100" style="cursor: pointer">
+                    <h4 md-line (click)="subTopics(item)" class="topic-title">{{item.name}}</h4>
+                    <md-icon color="accent" (click)="openQuestions(item)" mdTooltip="Go to Questions" class="attach-icon padding-side">format_list_numbered</md-icon>
+                    <!-- <md-icon color="accent" (click)="openLinks(item)" mdTooltip="Topic Links" class="attach-icon padding-side">link</md-icon> -->
+                    <md-icon [mdMenuTriggerFor]="menu" color="accent" (click)="open(item)">more_vert</md-icon>
+                </md-list-item>
+                <div *ngIf="toggleItem.id == item.id">
+                    <div fxLayout="column" *ngFor="let subItem of topicList">
+                        <md-list-item fxFlex="100" *ngIf="subItem.parentTopic == item.id" style="background-color:#eee">
+                            <h4 md-line>{{subItem.name}}</h4>
+                            <md-icon [mdMenuTriggerFor]="menu" color="accent" (click)="open(subItem)">more_vert</md-icon>
+
+
+
+
+                        </md-list-item>
+                    </div>
+                </div>
+            </md-list>
+
+
+
+
+        </div>
+
+        <md-menu #menu="mdMenu" class="common-menu">
+            <button md-menu-item (click)="menuEdit()">
+                                           <md-icon>edit</md-icon>
+                                            <span>Edit</span>
+                                           
+                                        </button>
+            <button md-menu-item (click)="deleteTopic()">                                   
+                                            <md-icon>delete</md-icon>
+                                            <span>Delete</span>
+                                </button>
+        </md-menu>
+
+
+    </div>
+    <div id="page-footer">
+        <button class="md-fab-position-bottom-right fixed" md-mini-fab color="accent" (click)="add()"><md-icon >add</md-icon></button>
+    </div>
+</main>
+<md-sidenav #sidenav align="end" mode="over" [opened]="showSide" (close)="onClose(null)">
+    <app-topics-details (close)="onClose('reload')" [topic]="topic" [course]="course" style="width:100%"></app-topics-details>
+</md-sidenav>
+
+<md-sidenav #sidenav1 align="end" mode="over" [opened]="showSideLinks" (closeLinks)="onCloseLinks(null)">
+    <app-links-details [(linkData)]="topicLinkData" [topic]="topic" (closeLinks)="onCloseLinks('reload')" style="width:100%"></app-links-details>
+</md-sidenav>
